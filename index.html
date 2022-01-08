@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>任務卡片</title>
+</head>
+
+<body>
+    <h1>Task card</h1>
+    <section class="section section-task">
+        <div class="container">
+            <div class="card-list"></div>
+            <div class="add-card">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                新增卡片
+            </div>
+        </div>
+
+        <div class="light-box">
+            <form class="form form-card">
+                <span class="title">新增卡片</span>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <label for="name">
+                    名稱
+                    <input type="text" id='name' placeholder="新增卡片" required>
+                </label>
+                <button class="add-btn">新增</button>
+            </form>
+
+
+            <form class="form form-task">
+                <span class="title">新增項目</span>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <label for="name">
+                    名稱
+                    <input type="text" id='name' placeholder="新增項目" required>
+                </label>
+                <button class="add-btn">新增</button>
+            </form>
+
+            <form class="form form-revise">
+                <span class="title">更改內容</span>
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <label for="name">
+                    修改卡片標題
+                    <input type="text" id='name' placeholder="修改標題">
+                </label>
+                <label for="name">
+                    修改卡片項目
+                    <input type="text" id='name' placeholder="修改項目">
+                </label>
+                <button class="add-btn">確定修改</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
