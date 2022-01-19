@@ -11,11 +11,11 @@ body {
 }
 
 
-.section {
+.task-panel {
     padding-top: 50px;
 }
 
-h1 {
+.task-title {
     line-height: 70px;
     font-style: italic;
     font-size: 60px;
@@ -62,10 +62,6 @@ h1 {
     cursor: pointer;
     color: #172b4d;
     box-shadow: 2px 5px 7px #1a2d38f2;
-}
-
-.card.drag-over {
-    background-color: rgb(228, 228, 228);
 }
 
 .card .title {

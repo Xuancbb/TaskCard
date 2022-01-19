@@ -9,7 +9,7 @@ let currentTaskIndex = 0;
 let cardIndex = 0;
 let changeIndex = cardIndexChange();
 
-
+// 判斷 localStorage 是否有資料
 if (JSON.parse(localStorage.getItem('cards')) === null || JSON.parse(localStorage.getItem('cards')).length === 0) {
 
     localStorage.setItem('cards', JSON.stringify([{
@@ -33,6 +33,7 @@ if (JSON.parse(localStorage.getItem('cards')) === null || JSON.parse(localStorag
     renderCard();
 }
 
+// 渲染卡片
 function renderCard() {
     let cardData = JSON.parse(localStorage.getItem('cards'));
 
@@ -42,7 +43,7 @@ function renderCard() {
 
 }
 
-
+// 建立卡片節點
 function creatCardNode(cardContent) {
     let card = document.createElement('div');
     let cardTitle = document.createElement('span');
@@ -82,6 +83,7 @@ function creatCardNode(cardContent) {
     return card;
 }
 
+// 建立卡片任務節點
 function creatTaskBox(cardContent) {
     let taskBox = document.createElement('ul');
     let taskNode = null;
@@ -106,6 +108,7 @@ function creatTaskBox(cardContent) {
 
 }
 
+// 監聽卡片和新增卡片任務按鈕
 function monitor(addListBtn, card) {
 
     addListBtn.addEventListener('click', function () {
@@ -118,12 +121,14 @@ function monitor(addListBtn, card) {
 
 }
 
+// 卡片處理
 function cardHandler(e) {
     let cardData = JSON.parse(localStorage.getItem('cards'));
     let deleTaskIndex = 0;
 
     cardIndex = this.dataset.index;
 
+    // 刪除卡片
     if (e.target.parentNode.className === 'title') {
         cardList.removeChild(this);
         cardData.splice(this.dataset.index, 1);
@@ -136,7 +141,7 @@ function cardHandler(e) {
         localStorage.setItem('cards', JSON.stringify(cardData));
     }
 
-
+    // 刪除卡片任務列表 
     if (e.target.parentNode.nodeName.toLowerCase() === 'li') {
         deleTaskIndex = Array.from(this.childNodes[1].childNodes).indexOf(e.target.parentNode);
         this.childNodes[1].removeChild(e.target.parentNode);
@@ -144,6 +149,7 @@ function cardHandler(e) {
         localStorage.setItem('cards', JSON.stringify(cardData));
     }
 
+    // 展開卡片修改標題或任務列表
     if (e.target.nodeName.toLowerCase() === 'li') {
         lightBox.classList.add('open');
         reviseCard.classList.add('open');
@@ -155,6 +161,7 @@ function cardHandler(e) {
 
 }
 
+// 新增卡片時建立索引
 function cardIndexChange() {
     let index = 0;
 
@@ -163,11 +170,12 @@ function cardIndexChange() {
     }
 }
 
-
+//  修改卡片的標題或任務
 function createReviseTextNode(reviseText) {
     return document.createTextNode(`${reviseText.value}`);
 }
 
+// 新增卡片任務
 function renderTask(inputValue) {
     let currentCardItem = cardList.childNodes[cardIndex].childNodes[1];
     let taskNode = document.createElement('li');
@@ -182,6 +190,7 @@ function renderTask(inputValue) {
     currentCardItem.appendChild(taskNode);
 }
 
+// 檢查新增卡片時標題或任務是否有內容
 function inputChange() {
 
     if (this.value === '') {
@@ -194,11 +203,13 @@ function inputChange() {
 
 }
 
+// 監聽新增卡片
 addCard.addEventListener('click', function () {
     lightBox.classList.add('open');
     newCard.classList.add('open');
 })
 
+// 監聽lightBox 
 lightBox.addEventListener('mousedown', function (e) {
 
     if (e.target.classList.contains('fa-times') || e.target.classList.contains('light-box')) {
@@ -219,7 +230,7 @@ lightBox.addEventListener('click', function (e) {
 })
 
 
-
+// 監聽 lightBox 的卡片
 newCard.addEventListener('click', function (e) {
     let cardData = JSON.parse(localStorage.getItem('cards'));
     let inputValue = document.querySelector('.form-card #name').value;;
@@ -248,6 +259,7 @@ newCard.addEventListener('click', function (e) {
 })
 
 
+// 監聽 lightBox 的任務
 newTask.addEventListener('click', function (e) {
     let cardData = JSON.parse(localStorage.getItem('cards'));
     let inputValue = document.querySelector('.form-task #name').value;
@@ -270,7 +282,7 @@ newTask.addEventListener('click', function (e) {
 
 })
 
-
+// 監聽 lightBox 的修改標題或任務
 reviseCard.addEventListener('click', function (e) {
     let cardData = JSON.parse(localStorage.getItem('cards'));
     let cardTitle = cardList.childNodes[cardIndex].childNodes[0];
@@ -292,6 +304,7 @@ reviseCard.addEventListener('click', function (e) {
     }
 })
 
+// 監聽輸入框狀態
 cardInput.forEach(input => {
     input.addEventListener('blur', inputChange);
     input.addEventListener('input', inputChange);
